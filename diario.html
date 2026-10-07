@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0B1020" />
+    <meta name="description" content="Meu Diário GameLog: sua coleção pessoal de jogos, notas e resenhas." />
+    <title>GameLog</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./js/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="./index.html#inicio" aria-label="GameLog, voltar ao início">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+          <span>Game<span class="brand-accent">Log</span></span>
+        </a>
+        <nav aria-label="Navegação principal">
+          <a href="./index.html#catalogo">Catálogo</a>
+          <a href="./diario.html" aria-current="page">Meu Diário <span id="nav-diary-count" class="nav-count" aria-label="0 jogos registrados">0</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="diary-section diary-page" aria-labelledby="diary-title">
+        <div class="shell">
+          <a class="back-link" href="./index.html#catalogo"><span aria-hidden="true">←</span> Voltar ao catálogo</a>
+          <div class="section-heading diary-heading">
+            <div>
+              <p class="section-kicker">SEU ARQUIVO PESSOAL / GAMELOG</p>
+              <h1 id="diary-title">Meu Diário<span class="title-dot">.</span></h1>
+              <p>Uma coleção pessoal de mundos visitados e histórias vividas.</p>
+            </div>
+            <span class="section-aside">SALVO NO SEU NAVEGADOR</span>
+          </div>
+
+          <div class="stats-grid" aria-label="Estatísticas do diário">
+            <article class="stat-card"><span class="stat-label">Quero jogar</span><strong id="stat-want">0</strong><span class="stat-mark stat-mark-violet" aria-hidden="true">◈</span></article>
+            <article class="stat-card"><span class="stat-label">Jogando</span><strong id="stat-playing">0</strong><span class="stat-mark stat-mark-cyan" aria-hidden="true">◉</span></article>
+            <article class="stat-card"><span class="stat-label">Finalizados</span><strong id="stat-finished">0</strong><span class="stat-mark stat-mark-peach" aria-hidden="true">✓</span></article>
+            <article class="stat-card stat-card-average"><span class="stat-label">Média das notas</span><strong id="stat-average">—</strong><span id="average-caption" class="stat-caption">Nenhuma nota ainda</span></article>
+          </div>
+
+          <div class="diary-toolbar">
+            <div><h2>Sua coleção <span id="diary-heading-count">(0)</span></h2><p>Registros e impressões em um só lugar.</p></div>
+            <div class="field diary-filter-field"><label for="diary-filter">Filtrar por status</label><select id="diary-filter"><option value="">Todos os registros</option><option value="want">Quero jogar</option><option value="playing">Jogando</option><option value="finished">Finalizado</option><option value="none">Sem status</option></select></div>
+          </div>
+          <div id="diary-list" class="diary-list"></div>
+          <div id="diary-empty" class="empty-state diary-empty" hidden>
+            <span class="empty-icon" aria-hidden="true">◇</span>
+            <h3 id="diary-empty-title">Seu diário está esperando</h3>
+            <p id="diary-empty-description">Escolha um jogo no catálogo para registrar seu primeiro capítulo.</p>
+            <a id="diary-empty-link" class="text-button" href="./index.html#catalogo">Explorar jogos <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><div class="shell footer-inner"><span class="brand footer-brand">Game<span class="brand-accent">Log</span></span><p>Um diário para suas aventuras digitais.</p><span>FEITO PARA QUEM JOGA</span></div></footer>
+
+    <dialog id="game-dialog" class="game-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-layout">
+        <div id="dialog-cover-slot" class="dialog-cover-slot"></div>
+        <div class="dialog-content">
+          <button id="dialog-close" class="dialog-close" type="button" aria-label="Fechar detalhes">×</button>
+          <p class="section-kicker">FICHA DO JOGO / GAMELOG</p>
+          <h2 id="dialog-title"></h2>
+          <p id="dialog-meta" class="dialog-meta"></p>
+          <p id="dialog-description" class="dialog-description"></p>
+          <div class="dialog-divider"></div>
+          <h3>Seu registro</h3>
+          <p class="form-intro">Atualize sua jornada neste jogo. Você pode deixar campos em branco.</p>
+          <form id="entry-form" novalidate>
+            <div class="form-row">
+              <div class="field"><label for="entry-status">Status</label><select id="entry-status" name="status"><option value="">Sem status</option><option value="want">Quero jogar</option><option value="playing">Jogando</option><option value="finished">Finalizado</option></select></div>
+              <div class="field"><label for="entry-rating">Sua nota (1 a 5)</label><input id="entry-rating" name="rating" type="text" inputmode="decimal" autocomplete="off" maxlength="4" placeholder="Ex.: 4,5" aria-describedby="rating-help" /><span id="rating-help" class="field-help">Use vírgula ou ponto. Até duas casas decimais.</span></div>
+            </div>
+            <div class="field review-field"><label for="entry-review">Sua resenha <span>(opcional)</span></label><textarea id="entry-review" name="review" rows="5" maxlength="800" placeholder="O que ficou com você depois de jogar?"></textarea><span id="review-counter" class="character-count">0 / 800</span></div>
+            <p id="form-error" class="form-error" role="alert" tabindex="-1" hidden></p>
+            <div class="form-actions"><button id="delete-entry" class="delete-button" type="button" hidden>Excluir registro</button><button class="save-button" type="submit">Salvar registro <span aria-hidden="true">↗</span></button></div>
+          </form>
+        </div>
+      </div>
+    </dialog>
+    <dialog id="confirm-dialog" class="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-description">
+      <p class="section-kicker">MEU DIÁRIO / EXCLUSÃO</p>
+      <h2 id="confirm-title">Excluir registro?</h2>
+      <p id="confirm-description">O registro de <strong id="confirm-game-title"></strong> será removido deste navegador.</p>
+      <div class="confirm-actions"><button id="confirm-cancel" class="cancel-button" type="button">Cancelar</button><button id="confirm-delete" class="confirm-delete-button" type="button">Excluir registro</button></div>
+    </dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>
