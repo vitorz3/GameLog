@@ -1,5 +1,5 @@
-// Dados fixos: o catálogo funciona sem internet e não depende de serviços externos.
-const catalog = [
+// lista fixa dos jogos que aparecem no catalogo.
+export const games = [
   { id: 'hollow-knight', title: 'Hollow Knight', genre: 'Metroidvania', platforms: 'PC, Switch, PlayStation, Xbox', description: 'Explore um reino subterrâneo em ruínas, descubra caminhos secretos e enfrente criaturas memoráveis.', art: 'rings', colors: ['#213650', '#62c9cf'] },
   { id: 'stardew-valley', title: 'Stardew Valley', genre: 'Simulação', platforms: 'PC, Switch, PlayStation, Xbox, Mobile', description: 'Cultive sua fazenda, conheça os moradores da vila e encontre seu próprio ritmo no campo.', art: 'field', colors: ['#4b5a34', '#d2bb6f'] },
   { id: 'celeste', title: 'Celeste', genre: 'Plataforma', platforms: 'PC, Switch, PlayStation, Xbox', description: 'Suba uma montanha desafiadora em uma jornada sobre coragem, persistência e autodescoberta.', art: 'peak', colors: ['#32447e', '#f19a9c'] },
@@ -22,9 +22,12 @@ const catalog = [
   { id: 'cyberpunk-2077', title: 'Cyberpunk 2077', genre: 'RPG de ação', platforms: 'PC, PlayStation, Xbox', description: 'Percorra Night City e descubra histórias de ambição, tecnologia e sobrevivência.', art: 'grid', colors: ['#635c32', '#f2de5a'] }
 ];
 
-// Os arquivos de imagem estão no projeto para que o catálogo funcione offline.
-export const games = catalog.map((game) => ({ ...game, image: `./assets/images/${game.id}.jpg` }));
+// cada capa tem o mesmo nome do id do jogo e fica salva no projeto.
+for (const game of games) {
+  game.image = `./assets/images/${game.id}.jpg`;
+}
 
+// estes nomes aparecem nos cards, no diario e nos filtros.
 export const statusLabels = {
   want: 'Quero jogar',
   playing: 'Jogando',
