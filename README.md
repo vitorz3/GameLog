@@ -26,7 +26,7 @@ Os registros ficam no `localStorage` do navegador, associados ao ID de cada jogo
 
 - `index.html`: página do catálogo.
 - `diario.html`: página do diário pessoal.
-- `styles.css`: tema, responsividade e estados de foco.
+- `css/styles.css`: tema, responsividade e estados de foco.
 - `js/catalog.js`: dados do catálogo.
 - `js/storage.js`: leitura, validação e gravação no `localStorage`.
 - `js/app.js`: busca, filtros, detalhes, diário, estatísticas e eventos da interface.
